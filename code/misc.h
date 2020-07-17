@@ -1,20 +1,14 @@
-#pragma once
+#ifndef MISC_H
+#define MISC_H
 
-#ifndef UINT
-#define UINT unsigned int
-#endif
-
-#ifndef BYTE
-#define BYTE char
-#endif
-#ifndef BOOL
-#define BOOL int
+#ifndef EX_OSERR
+#define EX_OSERR 1
 #endif
 
-#ifndef TRUE
-#define TRUE 1
-#endif
+typedef unsigned int UINT;
+typedef enum
+{
+	UNKNOWN = -1, FALSE = 0, TRUE
+} BOOL;
 
-#ifndef FALSE
-#define FALSE 0
-#endif
+#endif //MISC_H

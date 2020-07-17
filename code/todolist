@@ -1,0 +1,17 @@
+spellbook: the whole spellbook file
+
+deterministic automaton to determine the truths : everything has to be done
+
+networking: Listening is done; the API router is left to do
+
+optimizations here and there? Not a priority, the current algos/codes are not too bad on that aspect
+
+make a custom header for the CELLAUT and CELL structs instead of relying on the hacky forward declaration
+
+rbtree: perhaps further minimize code redundancy between left and right cases? not a priority, there isn't so much of it
+
+rbtree & hufftree: optimise the freeing of the trees so it takes less callstacks (recursive bad)
+
+*: make the compare(v*,v*) work in a way that takes isEq into account
+
+...that should be it. if we can init the automaton and its cells, and iterate over the automaton as we wish, and then receive and send orders, the job is done
