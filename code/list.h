@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <err.h>
+#include "misc.h"
 
 
 #ifndef LIST_H
@@ -24,8 +25,16 @@ size_t listLength(LIST *li);
 
 void add2list( void *value, LIST *li);
 
+//add value before the smallest greater elt to keep list sorted
+void insertSorted(void *value, LIST *li, BOOL (*cmp) (void*, void *));
+//remove a given element from its list
+void *removeElt(LIST* elt);
+
 void *dequeue(LIST *li); //FIFO
 void *pop(LIST *li); //FILO
+
+//find first val in list that matches cmp predicate
+LIST *find(LIST *li, void *val, BOOL (*cmp) (void*, void *));
 
 void printList(LIST *li, void (*printer)(void *));
 

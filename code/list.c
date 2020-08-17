@@ -30,6 +30,16 @@ void add2list(void *value, LIST *li)
 	new->prev->next = new;
 }
 
+void *removeElt(LIST *elt)
+{
+	elt->next->prev = elt->prev;
+	elt->prev->next = elt->next;
+
+	void *out = elt->value;
+	free(elt);
+	return out;
+}
+
 void *dequeue(LIST *li) //FIFO
 {
 	LIST *dequeued = li->next;
@@ -54,6 +64,26 @@ void *pop(LIST *li) //FILO
 
 	free(popped);
 	return out;
+}
+
+LIST *find(LIST *li, void *value, BOOL (*cmp) (void*, void *))
+{
+	for(LIST *out = li->next; out != li; out = out->next)
+	{
+		switch(cmp(value, out->value)) {
+			case 1 :
+				return out;
+			case -1 : //force end the search to save time
+				return NULL;
+		}
+	}
+	return NULL;
+}
+
+void insertSorted(void *value, LIST *li, BOOL (*cmp) (void*, void *))
+{
+	LIST *next = find(li, value, cmp);
+	add2list(value, next ? next : li);
 }
 
 void printList(LIST *li, void (*printer)(void *))
